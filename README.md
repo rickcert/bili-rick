@@ -7,6 +7,16 @@
 在原项目的基础上，我做了一些修改，主要是为了适应自己听音频的需求，升级到vue3,增加音频下载，编写了dockerfile。
 原作者 [Zhouqluo](https://github.com/Zhouqluo) 原仓库 https://github.com/Zhouqluo/bilidown-web
 
+## Docker 一键部署前后端
+
+```bash
+$ docker pull ghcr.io/rickhqh/bili-rick:latest
+
+$ docker run -d -p 8989:80 --name bili-rick  ghcr.io/rickhqh/bili-rick:latest
+
+
+```
+
 
 <details>
 <summary>
