@@ -47,7 +47,7 @@
                                                                                 target="_blank" class="prince"
                                                                                 pcked="1">by rick</a><span
       class="prince">丨</span><span class="usestudy">仅供学习使用</span><span class="usestudy">丨</span><a
-      href="https://github.com/rickhqh/bilidown-rick" target="_blank" class="opensource" >开源地址</a></div>
+      href="https://github.com/rickhqh/bili-rick" target="_blank" class="opensource" >开源地址</a></div>
 
 </template>
 
