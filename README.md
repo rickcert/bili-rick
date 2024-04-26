@@ -1,12 +1,18 @@
-# bilidown-web
+# bili-rick
 ## 简介
 这是一个前后端分离的项目，借助springboot代理b站官方接口，配合前端页面完成b站视频链接的在线获取。
 
-<img src="https://github.com/Zhouqluo/bilidown-web/blob/main/profile/bilidown-web.jpg">
+<img src="https://github.com/rickhqh/bili-rick/blob/main/bili-rick.jpg">
+
+在原项目的基础上，我做了一些修改，主要是为了适应自己听音频的需求，升级到vue3,增加音频下载，编写了dockerfile。
+原作者 [Zhouqluo](https://github.com/Zhouqluo) 原仓库 https://github.com/Zhouqluo/bilidown-web
 
 
+<summary>
+  原作者文档。
+</summary>
 ## 技术栈
-前端：vue2 + axios + element-ui 2.15.14
+前端：vue3 + axios + element-ui 2.15.14
 
 后端：springboot
 
