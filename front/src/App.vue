@@ -54,7 +54,7 @@
 <script>
 import axios from "axios"
 
-axios.defaults.baseURL = "https://bili.api.crond.dev"
+axios.defaults.baseURL = "/api"
 let source;
 export default {
   mounted() {
@@ -248,11 +248,16 @@ export default {
         this.bgUrl = "";
         this.progress = 0;
         this.downVideoStatus = false;
+        this.audioProgress = 0;
+        this.downAudioStatus = false;
       }
       if (this.downloadUrl) {
         this.downloadUrl = "";
         this.progress = 0;
         this.downVideoStatus = false;
+        this.audioProgress = 0;
+        this.downAudioStatus = false;
+        this.audioUrl = "";
       }
     },
     // 下载
@@ -304,7 +309,7 @@ export default {
             if (resp.data) {
               console.log(resp.data)
               this.bv = resp.data.split("video/")[1].split("?")[0]
-              this.videoUrl = "https://www.bilibili.com/video/" + this.bv
+              this.videoUrl = this.bv
               console.log(this.videoUrl)
               // 解析成功，正在请求消失
               this.loading = 5;
@@ -328,45 +333,7 @@ export default {
             }
           });
           // 普通视频，只用获取bv
-        } else if (this.videoUrl.includes("BV") && this.videoUrl.length <= 12) {
-          this.bv = this.videoUrl;
-          this.videoUrl = "https://www.bilibili.com/video/" + this.bv
-          this.$notify.closeAll();
-          this.$notify({
-            title: "解析中",
-            message: "正在解析手机端链接...",
-            duration: this.loading,
-            iconClass: "el-icon-loading"
-          });
-          //请求获取响应内容
-          axios.get("/move?url=" + this.videoUrl).then(resp => {
-            if (resp.data) {
-              console.log(resp.data)
-              // this.bv= resp.data.split("video/")[1].split("?")[0]
-              // this.videoUrl = "https://www.bilibili.com/video/" + this.bv
-              console.log(this.videoUrl)
-              // 解析成功，正在请求消失
-              this.loading = 5;
-              // 成功提示
-              this.$notify.closeAll();
-              this.$notify({
-                title: "解析成功",
-                message: "手机端链接成功，准备解析下载地址...",
-                type: "success",
-                duration: 1500
-              });
-              setTimeout(() => this.download(), 1500);
-            } else {
-              this.$notify.closeAll();
-              this.$notify({
-                title: "解析失败",
-                message: "很糟糕，解析失败了...",
-                type: "error",
-                duration: 2000
-              });
-            }
-          });
-        } else {
+        }  else {
           try {
             // 当前视频bv
             this.bv = this.videoUrl
@@ -452,7 +419,8 @@ export default {
     // 请求获取下载链接
     getDownloadUrl() {
       axios.get(`/download/${this.avid}/${this.cid}`).then(resp => {
-        this.downloadUrl = resp.data.data.durl[0].url;
+        this.downloadUrl = decodeURI(resp.data.data.durl[0].url);
+
         if (this.downloadUrl) {
           this.$notify.closeAll();
           this.$notify({
@@ -475,7 +443,8 @@ export default {
     },
     getAudioUrl() {
       axios.get(`/audio/${this.avid}/${this.cid}`).then(resp => {
-        this.audioUrl = resp.data.data.dash.audio[0].baseUrl;
+        this.audioUrl =  resp.data.data.dash.audio[0].baseUrl;
+        // alert(this.audioUrl)
         if (this.audioUrl) {
           this.$notify.closeAll();
           this.$notify({
