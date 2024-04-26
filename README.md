@@ -8,6 +8,7 @@
 原作者 [Zhouqluo](https://github.com/Zhouqluo) 原仓库 https://github.com/Zhouqluo/bilidown-web
 
 
+<details>
 <summary>
   原作者文档。
 </summary>
