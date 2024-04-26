@@ -201,7 +201,8 @@ export default {
         }
       }).then(resp => {
         this.audioloading = 5;
-        let blobUrl = window.URL.createObjectURL(resp.data);
+        let blob = new Blob([resp.data], {type: 'audio/mpeg'});
+        let blobUrl = window.URL.createObjectURL(blob);
         let a = document.createElement("a");
         a.download = `${this.videoName}` + ".mp3";
         a.href = blobUrl;
