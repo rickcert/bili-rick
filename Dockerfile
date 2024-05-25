@@ -1,5 +1,6 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
+RUN rm -rf /etc/nginx/conf.d/default.conf
 RUN rm -rf /var/cache/apk/* && \
     rm -rf /tmp/*
 RUN echo https://mirrors.ustc.edu.cn/alpine/v3.13/main > /etc/apk/repositories; \
